@@ -20,6 +20,7 @@ mm_texture = {}
 
 --------------------------------------------------------------------------------
 function mm_texture.init()
+	
 	mm_texture.defaulttexturedir = core.get_texturepath() .. DIR_DELIM .. "base" ..
 						DIR_DELIM .. "pack" .. DIR_DELIM
 	mm_texture.basetexturedir = mm_texture.defaulttexturedir
@@ -48,7 +49,7 @@ function mm_texture.reset()
 	mm_texture.gameid = nil
 	local have_bg      = false
 	local have_overlay = mm_texture.set_generic("overlay")
-	
+
 	if not have_overlay then
 		have_bg = mm_texture.set_generic("background")
 	end
@@ -56,7 +57,8 @@ function mm_texture.reset()
 	mm_texture.clear("header")
 	mm_texture.clear("footer")
 	core.set_clouds(false)
-	
+	mm_texture.set_dirt_bg()
+	mm_texture.set_generic("background")
 	mm_texture.set_generic("footer")
 	mm_texture.set_generic("header")
 	
@@ -116,16 +118,25 @@ function mm_texture.set_generic(identifier)
 			return true
 		end
 	end
-	
-	if mm_texture.defaulttexturedir ~= nil then
-		local path = mm_texture.defaulttexturedir .. DIR_DELIM .."menu_" ..
+
+	local file=io.open(mm_texture.defaulttexturedir ,"r")
+
+	if file ~= nil then 
+		io.close(file)
+		local path = mm_texture.defaulttexturedir .."menu_" ..
 										identifier .. ".png"
 		if core.set_background(identifier,path) then
 			return true
 		end
+	else
+		local path = defaulttexturedir .."menu_" ..
+										identifier .. ".png"
+		if core.set_background(identifier,path) then
+			return true
+		end
+
 	end
-	
-	return false
+
 end
 
 --------------------------------------------------------------------------------
@@ -152,6 +163,7 @@ function mm_texture.set_game(identifier,gamedetails)
 	return false
 end
 
+---------------------------------------------------------------------------------
 function mm_texture.set_dirt_bg()
 	if mm_texture.texturepack ~= nil then
 		local path = mm_texture.texturepack .. DIR_DELIM .."default_dirt.png"
@@ -162,5 +174,5 @@ function mm_texture.set_dirt_bg()
 	
 	--use base pack
 	local minimalpath = defaulttexturedir .. "dirt_bg.png"
-	core.set_background("background", minimalpath, true, 128)
+	core.set_background("background", minimalpath)--, true, 128)
 end
