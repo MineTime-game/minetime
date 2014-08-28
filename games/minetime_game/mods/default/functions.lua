@@ -399,6 +399,12 @@ minetest.register_abm({
 		local node_under = minetest.get_node(pos1)
 		local decay = minetest.registered_nodes[node.name].groups.treedecay
 		local nodes_around = minetest.find_node_near(pos, decay, {"group:trunk"})
+		local node = minetest.get_node(pos)
+		if node.param2 ~= 0 then
+			--print("param2 ~= 0")
+			return
+		end
+
 		if not decay or decay == 0 then
 			return
 		elseif decay ~= 1 and nodes_around then
@@ -415,15 +421,12 @@ minetest.register_abm({
 		else
 			itemstacks = minetest.get_node_drops(node.name)
 			for _, itemname in ipairs(itemstacks) do
-				if minetest.get_item_group(node.name, "treedecay_drop") ~= 0 or
-						itemname ~= node.name then
-					local p_drop = {
-						x = pos.x - 0.5 + math.random(),
-						y = pos.y - 0.5 + math.random(),
-						z = pos.z - 0.5 + math.random(),
-					}
-					minetest.add_item(p_drop, itemname)
-				end
+				local p_drop = {
+					x = pos.x - 0.5 + math.random(),
+					y = pos.y - 0.5 + math.random(),
+					z = pos.z - 0.5 + math.random(),
+				}
+				minetest.add_item(p_drop, itemname)
 			end
 			minetest.remove_node(pos)
 			nodeupdate(pos)
