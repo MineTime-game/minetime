@@ -957,13 +957,7 @@ void MapgenV6::placeTreesAndJungleGrass() {
 			}
 			p.Y++;
 
-
-			
 			// Make a tree
-
-
-			u32 vi = vm->m_area.index(x, y, z);
-			vm->m_data[vi] = CONTENT_AIR;
 
 			if (is_jungle) {
 				treegen::make_jungletree(*vm, p, ndef, myrand());

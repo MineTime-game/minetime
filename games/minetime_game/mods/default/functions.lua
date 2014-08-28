@@ -400,10 +400,6 @@ minetest.register_abm({
 		local decay = minetest.registered_nodes[node.name].groups.treedecay
 		local nodes_around = minetest.find_node_near(pos, decay, {"group:trunk"})
 		local node = minetest.get_node(pos)
-		if node.param2 ~= 0 then
-			--print("param2 ~= 0")
-			return
-		end
 
 		if not decay or decay == 0 then
 			return
