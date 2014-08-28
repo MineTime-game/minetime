@@ -1,6 +1,6 @@
 /*
-Minetest
-Copyright (C) 2010-2013 celeron55, Perttu Ahola <celeron55@gmail.com>
+Mine Time
+Copyright (C) 2014 cg72, Ginger Pollard **gingerpollard72@gmail.com**
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -444,16 +444,20 @@ void Server::start(Address bind_addr)
 
 	// ASCII art for the win!
 	actionstream
-	<<"        .__               __                   __   "<<std::endl
-	<<"  _____ |__| ____   _____/  |_  ____   _______/  |_ "<<std::endl
-	<<" /     \\|  |/    \\_/ __ \\   __\\/ __ \\ /  ___/\\   __\\"<<std::endl
-	<<"|  Y Y  \\  |   |  \\  ___/|  | \\  ___/ \\___ \\  |  |  "<<std::endl
-	<<"|__|_|  /__|___|  /\\___  >__|  \\___  >____  > |__|  "<<std::endl
-	<<"      \\/        \\/     \\/          \\/     \\/        "<<std::endl;
-	actionstream<<"World at ["<<m_path_world<<"]"<<std::endl;
-	actionstream<<"Server for gameid=\""<<m_gamespec.id
-			<<"\" listening on "<<bind_addr.serializeString()<<":"
-			<<bind_addr.getPort() << "."<<std::endl;
+	<<"        _              _____ _                       "<<std::endl
+	<<"  /\\/\\ (_)_ __   ___  /__   \\_)_ __ ___   ___      "<<std::endl
+	<<" /    \\| | '_ \\ / _ \\   / /\\ \\ | '_ ` _ \\ / _ \\ "<<std::endl
+	<<"/ /\\/\\ \\ | | | |  __/  / /  \\/ | | | | |  __/    "<<std::endl
+	<<"\\/    \\/_|_| |_|\\___|  \\/   |_|_| |_| |_|\\___|  "<<std::endl
+	<<"         Ver. 0.1                    (c) 2014        "<<std::endl;
+	actionstream
+	<<"Server loaded world at "<<m_path_world<<""<<std::endl;
+	actionstream
+	<<"Server is running gameid=\""<<m_gamespec.id<<"\""<<std::endl;
+	actionstream
+	<<"IP is set to: "<<bind_addr.serializeString()<<"\""<<std::endl;
+	actionstream
+	<<"Listening on port:"<<bind_addr.getPort()<<std::endl;
 }
 
 void Server::stop()
@@ -553,9 +557,9 @@ void Server::AsyncRunStep(bool initial_step)
 		JMutexAutoLock lock(m_env_mutex);
 		// Figure out and report maximum lag to environment
 		float max_lag = m_env->getMaxLagEstimate();
-		max_lag *= 0.9998; // Decrease slowly (about half per 5 minutes)
+		max_lag *= 0.6;
 		if(dtime > max_lag){
-			if(dtime > 0.1 && dtime > max_lag * 2.0)
+			if(dtime > 0.001 && dtime > max_lag * 2.0)
 				infostream<<"Server: Maximum lag peaked to "<<dtime
 						<<" s"<<std::endl;
 			max_lag = dtime;
