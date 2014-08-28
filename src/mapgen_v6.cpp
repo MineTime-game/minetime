@@ -961,7 +961,7 @@ void MapgenV6::placeTreesAndJungleGrass() {
 			if (is_jungle) {
 				treegen::make_jungletree(*vm, p, ndef, myrand());
 			} else {
-				bool is_apple_tree = (myrand_range(0, 3) == 0) &&
+				bool is_apple_tree = (myrand_range(0, 4) == 0) &&
 										getHaveAppleTree(v2s16(x, z));
 				treegen::make_tree(*vm, p, is_apple_tree, ndef, myrand());
 			}

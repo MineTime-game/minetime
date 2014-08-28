@@ -52,7 +52,7 @@ CaveV6::CaveV6(MapgenV6 *mg, PseudoRandom *ps, PseudoRandom *ps2, bool is_large_
 		min_tunnel_diameter = 5;
 		max_tunnel_diameter = ps->range(7, ps->range(8,24));
 	} else {
-		part_max_length_rs = ps->range(2,9);
+		part_max_length_rs = ps->range(4,12);
 		tunnel_routepoints = ps->range(10, ps->range(15,30));
 	}
 	

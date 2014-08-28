@@ -38,47 +38,36 @@ void make_tree(ManualMapVoxelManipulator &vmanip, v3s16 p0,
 	MapNode leavesnode(ndef->getId("mapgen_leaves"));
 	MapNode applenode(ndef->getId("mapgen_apple"));
 
-	s16 trunk_h = rand() % 7 + 5;
+	s16 trunk_h = rand() % 8 + 6 ;
 	v3s16 p1 = p0;
 
-	VoxelArea leaves_a(v3s16(-3,-3,-3), v3s16(3,3,3));
+	VoxelArea leaves_a(v3s16(-3,-2,-3), v3s16(3,3,3));
 
 	if(is_apple_tree){trunk_h = 5;}
 
-	for (s16 trunk=0; trunk<=trunk_h ; trunk++)
+	for(s16 trunk=0; trunk<=trunk_h -1 ; trunk++)
 	{
 		if(vmanip.m_area.contains(p1))
-			if(trunk == 0 || vmanip.getNodeNoExNoEmerge(p1).getContent() == CONTENT_AIR)
+			if(vmanip.getNodeNoExNoEmerge(p1).getContent() == CONTENT_AIR)
 				vmanip.m_data[vmanip.m_area.index(p1)] = treenode;
 		p1.Y++;
 
 	}
 
 	for(s16 z= -3; z<= 3; z++)
-	for(s16 y= -3; y<= 3; y++)
+	for(s16 y= -2; y<= 3; y++)
 	for(s16 x= -3; x<= 3; x++)
 	{
-		u32 vi = vmanip.m_area.index(v3s16(p0.X + x, p0.Y + y + trunk_h, p0.Z + z));
-                if (vmanip.m_area.contains(vi) == false) {
-		    //std::cout<<"line " << __LINE__ << " == false\n";
-		    continue;
-                }
-                if (rand() % 30 > 22)
-                    continue;
+		u32 vi = vmanip.m_area.index(v3s16(p0.X + x, p0.Y + y + trunk_h -1, p0.Z + z));
+        if (vmanip.m_area.contains(vi) == false) {continue;}
+        if (rand() % 30 > 22) {continue;}
 
-		if ( (std::abs(x) + std::abs(z) <= 5) && (std::abs(x) + std::abs(y) <= 5) && (std::abs(z) + std::abs(y) <= 5) ) {
-			//std::cout << "all good to go\n";
+		if ( (std::abs(x) + std::abs(z) < 5) && (std::abs(x) + std::abs(y) < 5) && (std::abs(z) + std::abs(y) < 5) ) {
 			
-			if(vmanip.m_data[vi].getContent() != CONTENT_AIR && vmanip.m_data[vi].getContent() != CONTENT_IGNORE  ) {
-			    //std::cout << "line " << __LINE__ << " != air || ignore @ pos "<< vi << "\n";
-			    continue;
-                        } 
-
-			//std::cout << "ready to place leaves || apples\n";
+			if(vmanip.m_data[vi].getContent() != CONTENT_AIR && vmanip.m_data[vi].getContent() != CONTENT_IGNORE  ) {continue;} 
             
-            bool is_apple = is_apple_tree && rand() % 100 < 10;
+            bool is_apple = is_apple_tree && rand() % 50 <= 10;
             vmanip.m_data[vi] = is_apple ? applenode : leavesnode;
-
 
 		}
 	}
@@ -502,10 +491,54 @@ v3f transposeMatrix(irr::core::matrix4 M, v3f v)
 void make_jungletree(VoxelManipulator &vmanip, v3s16 p0,
 		INodeDefManager *ndef, int seed)
 {
-	
-	MapNode jsaplingnode(ndef->getId("mapgen_jsapling"));
-	vmanip.m_data[vmanip.m_area.index(p0)] = jsaplingnode;
+	MapNode jungletreenode(ndef->getId("mapgen_jungletree"));
+	MapNode jungleleavesnode(ndef->getId("mapgen_jungleleaves"));
 
+	s16 trunk_h = rand() % 11 + 12 ;
+	v3s16 p1 = p0;
+
+	VoxelArea leaves_a(v3s16(-3,-3,-3), v3s16(3,3,3));
+
+	for(s16 trunk=0; trunk<=trunk_h -1; trunk++)
+	{
+		if(vmanip.m_area.contains(p1))
+			if(vmanip.getNodeNoExNoEmerge(p1).getContent() == CONTENT_AIR)
+				vmanip.m_data[vmanip.m_area.index(p1)] = jungletreenode;
+		p1.Y++;
+
+	}
+
+	for(s16 x= -1; x<= 1; x++)
+	for(s16 z= -1; z<= 1; z++)
+	{
+		if(rand() % 2 == 0){continue;}
+
+		if (vmanip.m_area.contains(vmanip.m_area.index(v3s16(p0.X + x, p0.Y - 1, p0.Z + z))) != false
+		&& vmanip.m_data[vmanip.m_area.index(v3s16(p0.X + x, p0.Y - 1, p0.Z + z))].getContent() == CONTENT_AIR )
+		{
+			vmanip.m_data[vmanip.m_area.index(v3s16(p0.X + x, p0.Y - 1, p0.Z + z))] = jungletreenode;
+		}else if (vmanip.m_area.contains(vmanip.m_area.index(v3s16(p0.X + x, p0.Y, p0.Z + z))) != false
+		&& vmanip.m_data[vmanip.m_area.index(v3s16(p0.X + x, p0.Y, p0.Z + z))].getContent() == CONTENT_AIR )
+ 		{
+ 			vmanip.m_data[vmanip.m_area.index(v3s16(p0.X + x, p0.Y, p0.Z + z))] = jungletreenode;
+ 		}
+	}
+	for(s16 z= -5; z<= 5; z++)
+	for(s16 y= -3; y<= 4; y++)
+	for(s16 x= -5; x<= 5; x++)
+	{
+		u32 vi = vmanip.m_area.index(v3s16(p0.X + x, p0.Y + y + trunk_h -1, p0.Z + z));
+        if (vmanip.m_area.contains(vi) == false) {continue;}
+        if (rand() % 30 > 22) {continue;}
+
+		if ( (std::abs(x) + std::abs(z) < 8) && (std::abs(x) + std::abs(y) < 8) && (std::abs(z) + std::abs(y) < 8) ) {
+			
+			if(vmanip.m_data[vi].getContent() != CONTENT_AIR && vmanip.m_data[vi].getContent() != CONTENT_IGNORE  ) {continue;} 
+
+            vmanip.m_data[vi] = jungleleavesnode;
+
+		}
+	}
 }
 
 }; // namespace treegen

@@ -8,8 +8,8 @@ tags
 *.rej
 ## Non-static Minetest directories
 /bin/
-/games/*
-!/games/minimal/
+
+
 /cache/
 /textures/*
 !/textures/base/
