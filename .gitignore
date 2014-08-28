@@ -8,16 +8,10 @@ tags
 *.rej
 ## Non-static Minetest directories
 /bin/
-
-
 /cache/
 /textures/*
 !/textures/base/
 /sounds/
-/mods/*
-!/mods/minetest/
-/mods/minetest/*
-!/mods/minetest/mods_here.txt
 /worlds/
 /world/
 ## Configuration/log files
