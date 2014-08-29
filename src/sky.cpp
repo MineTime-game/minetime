@@ -128,7 +128,7 @@ void Sky::render()
 
 	if(m_sunlight_seen)
 	{
-		float sunsize = 0.07;
+		float sunsize = 0.03;
 		video::SColorf suncolor_f(1, 1, 0, 1);
 		suncolor_f.r = 1;
 		suncolor_f.g = MYMAX(0.3, MYMIN(1.0, 0.7+m_time_brightness*(0.5)));
@@ -422,10 +422,10 @@ void Sky::render()
 					wicked_time_of_day : (1.0 - wicked_time_of_day))) * 10));
 			float f = starbrightness;
 			float d = 0.007;
-			video::SColor starcolor(255, f*90,f*90,f*90);
+			video::SColor starcolor(255, f*90,f*90,f*100);
 			if(starcolor.getBlue() < m_skycolor.getBlue())
 				break;
-			u16 indices[SKY_STAR_COUNT*4];
+			u16 indices[SKY_STAR_COUNT*6];
 			video::S3DVertex vertices[SKY_STAR_COUNT*4];
 			for(u32 i=0; i<SKY_STAR_COUNT; i++){
 				indices[i*4+0] = i*4+0;
