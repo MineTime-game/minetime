@@ -378,7 +378,7 @@ minetest.register_abm({
 	end
 })
 
---
+--[[   disabled till i can get around the tree being in 2 chunks and dieing
 -- treedecay
 --
 
@@ -429,5 +429,5 @@ minetest.register_abm({
 		end
 		end
 	end
-})
+})]]--
 
