@@ -94,8 +94,8 @@ MapgenV6::~MapgenV6() {
 
 MapgenV6Params::MapgenV6Params() {
 	spflags     = MGV6_BIOMEBLEND | MGV6_MUDFLOW;
-	freq_desert = 0.45;
-	freq_beach  = 0.15;
+	freq_desert = 0.35;
+	freq_beach  = 0.35;
 
 	np_terrain_base   = NoiseParams(-4,  20.0, v3f(250.0, 250.0, 250.0), 82341,  5, 0.6);
 	np_terrain_higher = NoiseParams(20,  16.0, v3f(500.0, 500.0, 500.0), 85039,  5, 0.6);
@@ -910,7 +910,7 @@ void MapgenV6::placeTreesAndJungleGrass() {
 		bool is_jungle = false;
 		if (spflags & MGV6_JUNGLES) {
 			humidity = getHumidity(p2d_center);
-			if (humidity > 0.75) {
+			if (humidity > 0.68) {
 				is_jungle = true;
 				tree_count *= 4;
 			}

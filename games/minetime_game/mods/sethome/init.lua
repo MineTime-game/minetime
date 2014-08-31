@@ -22,13 +22,11 @@ end
 
 loadhomes()
 
-minetest.register_privilege("home", "Can use /sethome and /home")
-
 local changed = false
 
 minetest.register_chatcommand("home", {
     description = "Teleport you to your home point",
-    privs = {home=true},
+    privs = {},
     func = function(name)
         local player = minetest.env:get_player_by_name(name)
         if player == nil then
@@ -46,7 +44,7 @@ minetest.register_chatcommand("home", {
 
 minetest.register_chatcommand("sethome", {
     description = "Set your home point",
-    privs = {home=true},
+    privs = {},
     func = function(name)
         local player = minetest.env:get_player_by_name(name)
         local pos = player:getpos()

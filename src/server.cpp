@@ -443,13 +443,14 @@ void Server::start(Address bind_addr)
 	m_thread->Start();
 
 	// ASCII art for the win!
+
 	actionstream
-	<<"        _              _____ _                       "<<std::endl
+	<<"        _              _____ _                        "<<std::endl
 	<<"  /\\/\\ (_)_ __   ___  /__   \\_)_ __ ___   ___      "<<std::endl
-	<<" /    \\| | '_ \\ / _ \\   / /\\ \\ | '_ ` _ \\ / _ \\ "<<std::endl
-	<<"/ /\\/\\ \\ | | | |  __/  / /  \\/ | | | | |  __/    "<<std::endl
-	<<"\\/    \\/_|_| |_|\\___|  \\/   |_|_| |_| |_|\\___|  "<<std::endl
-	<<"         Ver. 0.1                    (c) 2014        "<<std::endl;
+	<<" /    \\| | '_ \\ / _ \\   / /\\ \\| '_ ` _ \\ / _ \\ "<<std::endl
+	<<"/ /\\/\\ \\ | | | |  __/  / /  \\/| | | | | |  __/    "<<std::endl
+	<<"\\/    \\/_|_| |_|\\___|  \\/   |_|_| |_| |_|\\___|   "<<std::endl
+	<<"         Ver. 0.1                    (c) 2014         "<<std::endl;
 	actionstream
 	<<"Server loaded world at "<<m_path_world<<""<<std::endl;
 	actionstream
