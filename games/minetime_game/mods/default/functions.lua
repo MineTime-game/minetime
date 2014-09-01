@@ -411,7 +411,7 @@ minetest.register_abm({
 			minetest.get_node(pos1).name == "default:tree"           or minetest.get_node(pos1).name == "default:tree_gen" or 
 			minetest.get_node(pos1).name == "default:jungletree"     or minetest.get_node(pos1).name == "default:jungletree_gen" or
 			minetest.get_node(pos1).name == "default:acaciatree"     or minetest.get_node(pos1).name == "default:acaciatree_gen" or
-			minetest.get_node(pos1).name == "default:acaciatree_t"   or minetest.get_node(pos1).name == "ignore"
+			minetest.get_node(pos1).name == "default:acaciatree_t"   or minetest.get_node(pos1).name == "ignore" or
 			minetest.get_node(pos1).name == "default:desert_sand"    or minetest.get_item_group(node_under.name, "tree") > 0 then
 			return
 		else

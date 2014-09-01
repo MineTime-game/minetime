@@ -22,7 +22,7 @@ minetest.register_node("default:desert_stone", {
 
 minetest.register_node("default:stone_with_coal", {
 	description = "Coal Ore",
-	tiles = {"default_stone.png^default_mineral_coal.png"},
+	tiles = {"default_mineral_coal.png"},
 	is_ground_content = true,
 	groups = {cracky=3},
 	drop = 'default:coal_lump',
@@ -31,7 +31,7 @@ minetest.register_node("default:stone_with_coal", {
 
 minetest.register_node("default:stone_with_iron", {
 	description = "Iron Ore",
-	tiles = {"default_stone.png^default_mineral_iron.png"},
+	tiles = {"default_mineral_iron.png"},
 	is_ground_content = true,
 	groups = {cracky=2},
 	drop = 'default:iron_lump',
@@ -40,7 +40,7 @@ minetest.register_node("default:stone_with_iron", {
 
 minetest.register_node("default:stone_with_copper", {
 	description = "Copper Ore",
-	tiles = {"default_stone.png^default_mineral_copper.png"},
+	tiles = {"default_mineral_copper.png"},
 	is_ground_content = true,
 	groups = {cracky=2},
 	drop = 'default:copper_lump',
@@ -49,7 +49,7 @@ minetest.register_node("default:stone_with_copper", {
 
 minetest.register_node("default:stone_with_mese", {
 	description = "Mese Ore",
-	tiles = {"default_stone.png^default_mineral_mese.png"},
+	tiles = {"default_mineral_mese.png"},
 	is_ground_content = true,
 	groups = {cracky=1},
 	drop = "default:mese_crystal",
@@ -58,7 +58,7 @@ minetest.register_node("default:stone_with_mese", {
 
 minetest.register_node("default:stone_with_gold", {
 	description = "Gold Ore",
-	tiles = {"default_stone.png^default_mineral_gold.png"},
+	tiles = {"default_mineral_gold.png"},
 	is_ground_content = true,
 	groups = {cracky=2},
 	drop = "default:gold_lump",
@@ -67,7 +67,7 @@ minetest.register_node("default:stone_with_gold", {
 	
 minetest.register_node("default:stone_with_diamond", {
 	description = "Diamond Ore",
-	tiles = {"default_stone.png^default_mineral_diamond.png"},
+	tiles = {"default_mineral_diamond.png"},
 	is_ground_content = true,
 	groups = {cracky=1},
 	drop = "default:diamond",
@@ -287,6 +287,7 @@ minetest.register_node("default:junglewood", {
 minetest.register_node("default:jungleleaves", {
 	description = "Jungle Leaves",
 	drawtype = "allfaces_optional",
+	use_texture_alpha = true,
 	waving = 1,
 	visual_scale = 1.3,
 	tiles = {"default_branches.png^default_jungleleaves.png"},
