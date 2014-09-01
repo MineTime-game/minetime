@@ -6,7 +6,11 @@ minetest.register_on_newplayer(function(player)
 		player:get_inventory():add_item('main', 'default:torch 99')
 		player:get_inventory():add_item('main', 'default:axe_steel')
 		player:get_inventory():add_item('main', 'default:shovel_steel')
-		player:get_inventory():add_item('main', 'default:cobble 99')
+		player:get_inventory():add_item('main', 'default:cobble 80')
+		player:get_inventory():add_item('main', 'default:wood 160')
+		player:get_inventory():add_item('main', 'landclaim 2')
+		player:get_inventory():add_item('main', 'default:locked_chest 4')
+		player:get_inventory():add_item('main', 'default:apple 5')
 	end
 end)
 
