@@ -27,8 +27,8 @@ tab_credits = {
 				"label[0.5,3.3; ]" ..
 				"image[0.5,1;" .. core.formspec_escape(logofile) .. "]" ..
 				"textlist[3.5,-0.25;8.5,5.8;list_credits;" ..
-				--[["#FFFF00" .. fgettext("Core Developers") .."," ..
-				"Perttu Ahola (celeron55) <celeron55@gmail.com>,"..
+				"#FFFF00" .. fgettext("Core Developers") .."," ..
+				--[["Perttu Ahola (celeron55) <celeron55@gmail.com>,"..
 				"Ryan Kwolek (kwolekr) <kwolekr@minetest.net>,"..
 				"PilzAdam <pilzadam@minetest.net>," ..
 				"Ilya Zhuravlev (xyz) <xyz@minetest.net>,"..
@@ -56,6 +56,8 @@ tab_credits = {
 				"Constantin Wenger (SpeedProg) <constantin.wenger@googlemail.com>,"..
 				"matttpt <matttpt@gmail.com>,"..
 				"JacobF <queatz@gmail.com>,"..]]--
+			        "crazyginger72 <gingerpollard72@gmail.com>," ..
+			        "shadowzone <theshadowzone12@gmail.com>," ..
 				";0;true]"
 			end
 	}
